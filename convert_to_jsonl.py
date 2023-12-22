@@ -6,11 +6,12 @@ def is_valid_selftext(text):
     return len(text.split()) >= 50
 
 def process_row(row):
+    # Each row is processed into a list of dictionaries, each representing a turn in the conversation
     return [
-            {"from": "system", "value": "Melvin is a helpful and sarcastic chatbot for financial advice.", "weight": 0},
-            {"from": "human", "value": row["title"], "weight": 0},
-            {"from": "gpt", "value": row["selftext"], "weight": 0}
-            ]
+            {"from": "system", "value": "Melvin is a helpful and sarcastic chatbot for financial advice.", "weight": None},
+            {"from": "human", "value": row["title"], "weight": None},
+            {"from": "gpt", "value": row["selftext"], "weight": None}
+           ]
     
 
 def convert_csv_to_json(csv_filepath, json_filepath):
@@ -23,8 +24,8 @@ def convert_csv_to_json(csv_filepath, json_filepath):
                 data.append(processed_data)
 
     with open(json_filepath, 'w', encoding='utf-8') as json_file:
-        for entry in data:
-            json_file.write(json.dumps(entry) + ",")
+        # Write the entire dataset as a JSON array
+        json.dump(data, json_file, indent=4)
 
 # Replace 'your_file.csv' with the path to your CSV file
 # and 'output.json' with the desired output JSON file path
