@@ -21,7 +21,8 @@ def convert_csv_to_json(csv_filepath, json_filepath):
         for row in csv_reader:
             if is_valid_selftext(row["selftext"]):
                 processed_data = process_row(row)
-                data.append(processed_data)
+                # Encapsulate each processed row in a dictionary under "conversations" key
+                data.append({"conversations": processed_data})
 
     with open(json_filepath, 'w', encoding='utf-8') as json_file:
         # Write the entire dataset as a JSON array
