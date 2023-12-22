@@ -113,3 +113,9 @@ trainer_stats = trainer.train()
 
 print(f"{trainer_stats.metrics['train_runtime']} seconds used for training.")
 print(f"{round(trainer_stats.metrics['train_runtime']/60, 2)} minutes used for training.")
+
+# Save the trained model
+model_save_path = "outputs"
+model.save_pretrained(model_save_path)
+
+print(f"Model saved to {model_save_path}")
