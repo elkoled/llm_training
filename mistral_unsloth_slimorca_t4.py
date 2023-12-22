@@ -62,7 +62,7 @@ model = FastMistralModel.get_peft_model(
 
 #@title Slim Orca data prep
 from datasets import load_dataset
-dataset = load_dataset("Open-Orca/SlimOrca", split = "train")
+dataset = load_dataset('json', data_files='output.json', split = "train")
 def formatting_prompts_func(examples):
     convos = examples["conversations"]
     texts = []
@@ -113,4 +113,3 @@ trainer_stats = trainer.train()
 
 print(f"{trainer_stats.metrics['train_runtime']} seconds used for training.")
 print(f"{round(trainer_stats.metrics['train_runtime']/60, 2)} minutes used for training.")
-!nvidia-smi
